@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>فندق البتراء دمشق</title>
+<meta name="description" content="فندق ومطعم البتراء — البحصة، شارع الاتحاد، دمشق. احجز غرفتك مباشرة مع الفندق وشاهد التوفر والأسعار لحظياً.">
+<meta name="theme-color" content="#141A33">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 124'%3E%3Cg fill='%232A3FA8'%3E%3Cpath d='M4 27 60 3l56 24-6 5L60 12 10 32z'/%3E%3Crect x='10' y='40' width='14' height='76'/%3E%3Crect x='96' y='40' width='14' height='76'/%3E%3Crect x='42' y='36' width='14' height='80'/%3E%3Cpath d='M56 36h12a19 19 0 0 1 0 38H56v-10h12a9 9 0 0 0 0-18H56z'/%3E%3Crect x='24' y='86' width='72' height='9'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700&family=Reem+Kufi:wght@500;600;700&family=Marcellus&display=swap">
+<style>
+/* Layout concept: a Damascene stone façade — limestone ground, bands of black-and-white "ablaq" masonry
+   dividing the page, night-blue courtyards for the moments that matter (search, booking, confirmation). */
+:root{
+  --stone:#F3EEE4; --stone-2:#E9E1D2; --paper:#FFFDF8;
+  --ink:#141A33; --ink-2:#1D2548; --basalt:#23222B;
+  --ultra:#2A3FA8; --ultra-2:#3D55D1; --ultra-soft:#E3E7FA;
+  --brass:#C98A45; --brass-2:#E0A865; --brass-soft:#F6E7D3;
+  --muted:#6A6878; --line:#DDD3C2; --line-night:rgba(255,255,255,.14);
+  --ok:#2F7D5B; --warn:#B7791F; --bad:#B23A48;
+  --f-display:"Reem Kufi","Alexandria",system-ui,sans-serif;
+  --f-body:"Alexandria",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+  --f-latin:"Marcellus","Times New Roman",serif;
+  --r:14px; --gutter:clamp(16px,4vw,48px); --max:1240px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.7;font-weight:400;overflow-x:hidden}
+img,video{max-width:100%;display:block}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;line-height:1.25;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;display:inline-block}
+.eyebrow{font-size:13px;letter-spacing:.06em;color:var(--brass);font-weight:600;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:28px;height:2px;background:currentColor;display:inline-block}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+[hidden]{display:none!important}
+
+/* ablaq: alternating basalt & limestone courses */
+.ablaq{height:18px;background:repeating-linear-gradient(to bottom,var(--basalt) 0 6px,var(--paper) 6px 12px);position:relative}
+.ablaq.thin{height:6px;background:repeating-linear-gradient(to bottom,var(--basalt) 0 2px,var(--paper) 2px 4px)}
+.star-bg{background-color:var(--ink);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.06' stroke-width='1'%3E%3Cpath d='M32 6l7 19 19 7-19 7-7 19-7-19-19-7 19-7z'/%3E%3Crect x='18' y='18' width='28' height='28' transform='rotate(45 32 32)'/%3E%3Crect x='18' y='18' width='28' height='28'/%3E%3C/g%3E%3C/svg%3E")}
+
+/* preview banner */
+.preview-bar{background:var(--brass);color:var(--ink);font-size:13.5px;padding:8px var(--gutter);display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;text-align:center}
+.preview-bar a{font-weight:700}
+
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;transition:background .3s,box-shadow .3s}
+.top .wrap{display:flex;align-items:center;gap:20px;height:72px}
+.top.solid{background:rgba(20,26,51,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line-night)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+.brand svg{width:40px;height:42px;color:#fff}
+.brand b{font-family:var(--f-display);font-size:24px;font-weight:700;line-height:1}
+.brand small{display:block;font-family:var(--f-latin);font-size:11px;letter-spacing:.32em;opacity:.8;margin-top:4px}
+.nav{display:flex;gap:4px;margin-inline-start:auto}
+.nav a{color:rgba(255,255,255,.86);text-decoration:none;font-size:14.5px;padding:8px 12px;border-radius:999px;transition:background .2s}
+.nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 22px;font-weight:600;font-size:15px;text-decoration:none;transition:transform .15s,background .2s,box-shadow .2s;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-brass{background:var(--brass);color:var(--ink)}
+.btn-brass:hover{background:var(--brass-2)}
+.btn-ultra{background:var(--ultra);color:#fff}
+.btn-ultra:hover{background:var(--ultra-2)}
+.btn-ghost{background:transparent;border:1px solid currentColor;color:inherit}
+.btn-ghost:hover{background:rgba(127,127,127,.12)}
+.btn-wa{background:#1FA855;color:#fff}
+.btn-wa:hover{background:#18934a}
+.btn[disabled]{opacity:.55;pointer-events:none}
+.menu-btn{display:none;background:none;border:0;color:#fff;padding:8px}
+
+/* hero */
+.hero{position:relative;color:#fff;margin-top:-72px;padding-top:72px;min-height:680px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--ink)}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(14,18,40,.96) 0%,rgba(14,18,40,.55) 45%,rgba(14,18,40,.35) 70%,rgba(14,18,40,.7) 100%)}
+.hero-inner{position:relative;z-index:2;padding-block:56px 40px;display:grid;gap:28px}
+.hero-mark{display:flex;align-items:flex-end;gap:22px;flex-wrap:wrap}
+.hero h1{font-size:clamp(64px,13vw,168px);line-height:.9;font-weight:700;letter-spacing:-.01em}
+.hero h1 .latin{display:block;font-family:var(--f-latin);font-size:clamp(14px,1.6vw,18px);letter-spacing:.6em;font-weight:400;margin-top:18px;opacity:.85}
+.hero-copy{max-width:520px;font-size:clamp(16px,1.6vw,19px);font-weight:300;color:rgba(255,255,255,.88)}
+.hero-copy strong{font-weight:600;color:#fff}
+.live-chips{display:flex;gap:10px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);font-size:13.5px;backdrop-filter:blur(8px)}
+.dot{width:8px;height:8px;border-radius:50%;background:#4ADE80;box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,.55)}70%{box-shadow:0 0 0 10px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+
+/* search bar */
+.search{background:var(--paper);color:var(--ink);border-radius:20px;padding:10px;display:grid;grid-template-columns:1.4fr .8fr .8fr auto;gap:6px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);position:relative}
+.field{border-radius:14px;padding:10px 16px;display:flex;flex-direction:column;justify-content:center;min-width:0;background:transparent;border:0;text-align:start;transition:background .15s}
+button.field:hover,.field:focus-within{background:var(--stone)}
+.field label,.field .lbl{font-size:12px;color:var(--muted);font-weight:500}
+.field .val{font-weight:600;font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.field select{border:0;background:transparent;font-weight:600;font-size:15.5px;padding:0;appearance:none;-webkit-appearance:none;cursor:pointer;width:100%}
+.search .btn{border-radius:14px;padding-inline:26px;font-size:16px}
+
+/* date picker popover */
+.picker{position:absolute;z-index:60;top:calc(100% + 10px);inset-inline-start:0;width:min(760px,calc(100vw - 32px));background:var(--paper);color:var(--ink);border-radius:20px;box-shadow:0 30px 80px -20px rgba(10,14,40,.55);padding:18px}
+.cal-wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal-head b{font-family:var(--f-display);font-size:17px}
+.cal-nav{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--paper);display:grid;place-items:center}
+.cal-nav:hover{background:var(--stone)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-dow{font-size:11.5px;color:var(--muted);text-align:center;padding-bottom:4px}
+.day{height:54px;border:0;background:transparent;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15;padding:2px;position:relative;max-width:100%}
+.day .d{font-weight:600;font-size:14.5px}
+.day .p{font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.day:hover:not([disabled]){background:var(--stone)}
+.day[disabled]{opacity:.28;cursor:default}
+.day.full .p{color:var(--bad)}
+.day.low .p{color:var(--warn)}
+.day.cheap .p{color:var(--ok);font-weight:600}
+.day.in-range{background:var(--ultra-soft);border-radius:0}
+.day.start,.day.end{background:var(--ultra)!important;color:#fff;border-radius:10px}
+.day.start .p,.day.end .p{color:rgba(255,255,255,.8)}
+.day.today .d{text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--brass)}
+.cal-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px}
+.legend{display:flex;gap:14px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-inline-end:6px}
+
+/* sections */
+section{scroll-margin-top:80px}
+.sec{padding-block:clamp(64px,9vw,112px)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.sec-head h2{font-size:clamp(30px,4.4vw,52px);margin-top:10px}
+.sec-head p{max-width:460px;color:var(--muted)}
+
+/* promise strip */
+.promise{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.promise div{padding:26px 22px;display:flex;gap:14px;align-items:flex-start;border-inline-start:1px solid var(--line)}
+.promise div:first-child{border-inline-start:0}
+.promise svg{flex:none;width:26px;height:26px;color:var(--ultra)}
+.promise b{display:block;font-size:15px}
+.promise span{font-size:13.5px;color:var(--muted)}
+
+/* rooms */
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:500}
+.pill[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.stay-summary{background:var(--ink);color:#fff;border-radius:18px;padding:16px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+.stay-summary b{font-family:var(--f-display);font-size:18px}
+.stay-summary .btn{margin-inline-start:auto}
+.rooms{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:26px}
+.room{background:var(--paper);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 0 var(--line);transition:transform .3s,box-shadow .3s}
+.room:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(20,26,51,.45)}
+.room.unavailable{opacity:.62}
+.gal{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--stone-2)}
+.gal-track{display:flex;height:100%;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.gal-track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover}
+.gal-btn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,253,248,.9);display:grid;place-items:center;opacity:0;transition:opacity .2s}
+.room:hover .gal-btn,.gal-btn:focus-visible{opacity:1}
+.gal-btn.prev{inset-inline-start:12px}.gal-btn.next{inset-inline-end:12px}
+.gal-dots{position:absolute;bottom:12px;inset-inline:0;display:flex;justify-content:center;gap:6px}
+.gal-dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.55);transition:width .3s}
+.gal-dots i.on{width:18px;background:#fff}
+.badge{position:absolute;top:14px;inset-inline-start:14px;background:var(--paper);color:var(--ink);font-size:12.5px;font-weight:600;padding:5px 12px;border-radius:999px;display:flex;gap:6px;align-items:center}
+.badge.hot{background:var(--bad);color:#fff}
+.badge.none{background:var(--basalt);color:#fff}
+.room-body{padding:22px 22px 20px;display:flex;flex-direction:column;gap:14px;flex:1}
+.room-title{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.room h3{font-size:23px}
+.room .tag{color:var(--muted);font-size:14px}
+.specs{display:flex;gap:16px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+.specs span{display:inline-flex;gap:6px;align-items:center}
+.specs svg{width:16px;height:16px}
+.amen{display:flex;gap:8px;flex-wrap:wrap}
+.amen span{width:34px;height:34px;border-radius:10px;background:var(--stone);display:grid;place-items:center;color:var(--ink-2)}
+.amen svg{width:17px;height:17px}
+.room-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:auto;padding-top:14px;border-top:1px dashed var(--line)}
+.price b{font-family:var(--f-display);font-size:30px;line-height:1;color:var(--ink)}
+.price small{display:block;font-size:12.5px;color:var(--muted)}
+.price .syp{font-size:12px;color:var(--muted)}
+.link{background:none;border:0;padding:0;color:var(--ultra);font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:4px}
+
+/* availability calendar section */
+.avail{background:var(--ink);color:#fff}
+.avail .sec-head p{color:rgba(255,255,255,.65)}
+.avail-panel{background:var(--paper);color:var(--ink);border-radius:24px;padding:clamp(16px,3vw,30px)}
+.avail-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.avail .pill{border-color:var(--line)}
+
+/* restaurant */
+.resto{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+.resto-media{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:14px}
+.resto-media video{grid-column:1/-1;border-radius:22px;aspect-ratio:16/9;object-fit:cover;width:100%}
+.resto-media img{border-radius:18px;aspect-ratio:1;object-fit:cover;width:100%}
+.resto ul{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:14px}
+.resto li{display:flex;gap:14px;align-items:flex-start}
+.resto li b{display:block}
+.resto li span{color:var(--muted);font-size:14.5px}
+.resto li svg{flex:none;width:22px;height:22px;color:var(--brass);margin-top:4px}
+
+/* damascus */
+.city{color:#fff}
+.city .sec-head p{color:rgba(255,255,255,.7)}
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+.tile{position:relative;border-radius:20px;overflow:hidden;background:var(--ink-2)}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.tile:hover img{transform:scale(1.06)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,14,34,.88),transparent 60%)}
+.tile figcaption{position:absolute;bottom:0;inset-inline:0;padding:18px;z-index:2}
+.tile figcaption b{font-family:var(--f-display);font-size:20px;display:block}
+.tile figcaption span{font-size:13px;opacity:.85}
+.walk{display:inline-flex;gap:6px;align-items:center;background:rgba(255,255,255,.14);border-radius:999px;padding:3px 10px;font-size:12.5px;margin-top:6px;backdrop-filter:blur(6px)}
+.t-big{grid-column:span 2;grid-row:span 2}
+.t-wide{grid-column:span 2}
+
+/* manage booking */
+.manage{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+.form-card{background:var(--paper);border-radius:22px;padding:26px;display:grid;gap:14px}
+.inp{display:grid;gap:6px}
+.inp label{font-size:13.5px;font-weight:500;color:var(--ink-2)}
+.inp input,.inp select,.inp textarea{width:100%;border:1px solid var(--line);background:var(--paper);border-radius:12px;padding:12px 14px;font-size:15.5px;transition:border-color .15s,box-shadow .15s}
+.inp input:focus,.inp select:focus,.inp textarea:focus{outline:0;border-color:var(--ultra);box-shadow:0 0 0 4px var(--ultra-soft)}
+.inp textarea{resize:vertical;min-height:84px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.phone-in{display:flex;direction:ltr;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper)}
+.phone-in:focus-within{border-color:var(--ultra);box-shadow:0 0 0 4px var(--ultra-soft)}
+.phone-in select{border:0;border-inline-end:1px solid var(--line);border-radius:0;width:auto;background:var(--stone);padding:0 10px;font-size:14.5px}
+.phone-in input{border:0!important;box-shadow:none!important;border-radius:0}
+.err{color:var(--bad);font-size:14px;font-weight:500}
+
+/* ticket */
+.ticket{background:var(--ink);color:#fff;border-radius:22px;overflow:hidden;position:relative}
+.ticket-top{padding:24px;display:flex;gap:18px;align-items:center}
+.ticket-top img{width:92px;height:92px;border-radius:16px;object-fit:cover;flex:none}
+.ticket-code{font-family:var(--f-latin);font-size:30px;letter-spacing:.12em;direction:ltr}
+.ticket-cut{height:22px;position:relative;background:radial-gradient(circle at 0 50%,var(--stone) 11px,transparent 12px) left/50% 100% no-repeat,radial-gradient(circle at 100% 50%,var(--stone) 11px,transparent 12px) right/50% 100% no-repeat}
+.ticket-cut::after{content:"";position:absolute;inset-inline:22px;top:50%;border-top:2px dashed rgba(255,255,255,.25)}
+.ticket-body{padding:18px 24px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ticket-body div span{display:block;font-size:12px;opacity:.65}
+.ticket-body div b{font-size:15.5px;font-weight:600}
+.status{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:600}
+.st-pending{background:#FDF3DC;color:#8A5A0B}.st-confirmed{background:#DDF3E8;color:#1F6A48}.st-in_house{background:var(--ultra-soft);color:var(--ultra)}
+.st-checked_out{background:#ECEBF1;color:#4A4860}.st-cancelled,.st-no_show{background:#F8E1E4;color:#9B2D3B}
+
+/* sheet (booking drawer) */
+.scrim{position:fixed;inset:0;background:rgba(10,12,28,.55);backdrop-filter:blur(3px);z-index:80;opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;top:0;bottom:0;inset-inline-end:0;width:min(560px,100%);background:var(--stone);z-index:90;transform:translateX(-105%);transition:transform .45s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:0 0 80px rgba(0,0,0,.35)}
+[dir="rtl"] .sheet{inset-inline-end:auto;inset-inline-start:auto;left:0}
+.sheet.on{transform:none}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;padding:calc(16px + env(safe-area-inset-top,0px)) 22px 16px;background:var(--ink);color:#fff}
+.sheet-head b{font-family:var(--f-display);font-size:20px}
+.x{width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center}
+.sheet-body{overflow:auto;padding:22px;display:grid;gap:18px;flex:1;align-content:start}
+.sheet-foot{padding:16px 22px calc(16px + env(safe-area-inset-bottom,0px));background:var(--paper);border-top:1px solid var(--line);display:flex;align-items:center;gap:16px}
+.sheet-foot .tot{flex:1}
+.sheet-foot .tot b{font-family:var(--f-display);font-size:26px}
+.sheet-foot .tot span{display:block;font-size:12.5px;color:var(--muted)}
+.sum-card{background:var(--paper);border-radius:18px;padding:16px;display:flex;gap:14px;align-items:center}
+.sum-card img{width:84px;height:84px;border-radius:14px;object-fit:cover}
+.sum-card b{font-family:var(--f-display);font-size:18px}
+.dates-row{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;background:var(--paper);border-radius:18px;padding:14px 16px}
+.dates-row div span{display:block;font-size:12px;color:var(--muted)}
+.dates-row div b{font-weight:600}
+.dates-row .n{background:var(--ink);color:#fff;border-radius:999px;padding:4px 12px;font-size:13px}
+.breakdown{background:var(--paper);border-radius:18px;padding:6px 16px}
+.breakdown summary{cursor:pointer;padding:10px 0;font-weight:600;font-size:14.5px}
+.bd-line{display:flex;justify-content:space-between;padding:6px 0;font-size:14px;border-top:1px dashed var(--line)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-2)}
+.check input{margin-top:5px;accent-color:var(--ultra);width:17px;height:17px}
+
+/* success */
+.done-hero{text-align:center;display:grid;gap:10px;justify-items:center;padding-top:6px}
+.stamp{width:96px;height:96px;border-radius:50%;border:3px solid var(--ok);color:var(--ok);display:grid;place-items:center;transform:rotate(-12deg);animation:stamp .6s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes stamp{from{transform:scale(2.2) rotate(-30deg);opacity:0}to{transform:scale(1) rotate(-12deg);opacity:1}}
+.stamp svg{width:46px;height:46px}
+.copy-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:16px;pointer-events:none;opacity:0;transition:opacity .25s}
+.modal.on{opacity:1;pointer-events:auto}
+.modal-card{background:var(--paper);border-radius:24px;max-width:960px;width:100%;max-height:calc(100vh - 32px);overflow:auto;display:grid;grid-template-columns:1.2fr 1fr;box-shadow:0 40px 90px rgba(0,0,0,.4)}
+.modal-card .gal{aspect-ratio:auto;height:100%;min-height:420px}
+.modal-info{padding:28px;display:grid;gap:16px;align-content:start;position:relative}
+.modal-info .x{position:absolute;top:16px;inset-inline-end:16px;background:var(--stone);color:var(--ink)}
+.am-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:14px}
+.am-list span{display:flex;gap:8px;align-items:center}
+.am-list svg{width:18px;height:18px;color:var(--ultra)}
+
+/* footer */
+footer{background:var(--basalt);color:rgba(255,255,255,.8);font-size:14.5px}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:36px;padding-block:56px 36px}
+footer h4{font-family:var(--f-display);color:#fff;font-size:17px;margin:0 0 12px;font-weight:600}
+footer a{color:#fff}
+footer .ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.credit{border-top:1px solid rgba(255,255,255,.1);padding-block:18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.55)}
+.credit a{color:var(--brass-2);text-decoration:none}
+
+/* toast */
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,30px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:14px;z-index:120;opacity:0;transition:.3s;font-size:14.5px;box-shadow:0 12px 40px rgba(0,0,0,.3);max-width:calc(100vw - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+.skeleton{background:linear-gradient(90deg,var(--stone-2),var(--stone),var(--stone-2));background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+.reveal{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{transform:translateY(18px);opacity:.001}to{transform:none;opacity:1}}
+
+@media (max-width:980px){
+  .nav{display:none}
+  .nav.open{display:flex;position:absolute;top:72px;inset-inline:12px;flex-direction:column;background:var(--ink);padding:10px;border-radius:18px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+  .menu-btn{display:block;margin-inline-start:auto}
+  .top .btn-brass{display:none}
+  .search{grid-template-columns:1fr 1fr}
+  .search .date-field{grid-column:1/-1}
+  .search .btn{grid-column:1/-1;padding-block:14px}
+  .promise{grid-template-columns:1fr 1fr}
+  .promise div:nth-child(3){border-inline-start:0}
+  .promise div{border-top:1px solid var(--line)}
+  .resto,.manage{grid-template-columns:1fr}
+  .mosaic{grid-template-columns:1fr 1fr;grid-auto-rows:180px}
+  .modal-card{grid-template-columns:1fr}
+  .modal-card .gal{min-height:0;aspect-ratio:4/3}
+  .foot-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .cal-wrap{grid-template-columns:1fr}
+  .cal-wrap .cal-month:nth-child(2){display:none}
+  .picker{position:fixed;top:auto;bottom:0;inset-inline:0;width:100%;border-radius:22px 22px 0 0;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
+  .rooms{grid-template-columns:1fr}
+  .hero{min-height:620px}
+  .hero h1 .latin{letter-spacing:.28em}
+  .t-big{grid-column:span 2;grid-row:span 1}
+  .ticket-body{grid-template-columns:1fr 1fr}
+  .row2{grid-template-columns:1fr}
+  .promise{grid-template-columns:1fr}
+  .promise div{border-inline-start:0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo" viewBox="0 0 120 124"><g fill="currentColor"><path d="M4 27 60 3l56 24-6 5L60 12 10 32z"/><path d="M6 36h22v6h-4v70h4v6H6v-6h4V42H6z"/><path d="M92 36h22v6h-4v70h4v6H92v-6h4V42h-4z"/><path d="M38 32h22v6h-4v74h4v6H38v-6h4V38h-4z"/><path d="M56 38h12a19 19 0 0 1 0 38H56v-10h12a9 9 0 0 0 0-18H56z"/><rect x="24" y="86" width="72" height="9"/></g></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0"/><circle cx="12" cy="19.5" r="1.3" fill="currentColor"/></symbol>
+    <symbol id="i-ac" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2v20M4 7l16 10M20 7 4 17"/><path d="m9 4 3 2 3-2M9 20l3-2 3 2"/></g></symbol>
+    <symbol id="i-tv" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/></g></symbol>
+    <symbol id="i-safe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M12 8.5V10M12 14v1.5"/></g></symbol>
+    <symbol id="i-minibar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M5 10h14M9 6v2M9 13v3"/></g></symbol>
+    <symbol id="i-bathtub" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h18v2a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5z"/><path d="M6 12V5a2 2 0 0 1 4 0M7 19l-1 2M17 19l1 2"/></g></symbol>
+    <symbol id="i-shower" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 21V6a3 3 0 0 1 6 0M8 9h8a4 4 0 0 0-8 0"/><path d="M10 13v1M13 13v2M16 13v1M11.5 17v1M14.5 17v1"/></g></symbol>
+    <symbol id="i-desk" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 9h18M5 9v11M19 9v11M13 9v6h6"/><path d="M8 9V5h5v4"/></g></symbol>
+    <symbol id="i-sofa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 11V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v3"/><path d="M3 13a2 2 0 0 1 4 0v2h10v-2a2 2 0 0 1 4 0v5H3zM6 18v2M18 18v2"/></g></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 10h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3v3M12 3v3"/></g></symbol>
+    <symbol id="i-view" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 20h18M5 20V10l4-3v13M9 20V5l5 3v12M14 20v-8l5 2v6"/></g></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></g></symbol>
+    <symbol id="i-bed" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 18V6M3 14h18v4M21 18v-6a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></g></symbol>
+    <symbol id="i-size" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h6M4 4v6M20 20h-6M20 20v-6M4 4l16 16"/></g></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></g></symbol>
+    <symbol id="i-cash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></g></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></g></symbol>
+    <symbol id="i-walk" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="4" r="2"/><path d="m9 21 2-6 3 3v3M7 12l3-4 4 1 2 3 3 1M11 15l-1-4"/></g></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></g></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  </defs>
+</svg>
+
+<div class="preview-bar" id="previewBar" hidden>
+  <span>نسخة معاينة تفاعلية: جرّب الحجز كضيف، ثم افتح لوحة الاستقبال لترى الحجز يصل.</span>
+  <a href="admin.html">افتح لوحة الاستقبال ←</a>
+</div>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="فندق البتراء">
+      <svg><use href="#logo"/></svg>
+      <span><b>البتراء</b><small>ALPATRA</small></span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#rooms">الغرف والأجنحة</a>
+      <a href="#availability">التوفر والأسعار</a>
+      <a href="#restaurant">المطعم</a>
+      <a href="#damascus">دمشق من حولك</a>
+      <a href="#manage">حجزي</a>
+      <a href="#contact">اتصل بنا</a>
+    </nav>
+    <a class="btn btn-brass" href="#rooms" data-scroll-search>احجز الآن</a>
+    <button class="menu-btn" id="menuBtn" aria-label="القائمة" aria-expanded="false"><svg width="26" height="26"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <img class="poster" src="media/hero-poster.webp" alt="">
+  <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="media/hero-poster.webp"><source src="media/hero.mp4" type="video/mp4"></video>
+  <div class="wrap hero-inner">
+    <div class="eyebrow" style="color:var(--brass-2)">فندق ومطعم · البحصة، دمشق</div>
+    <div class="hero-mark">
+      <h1 class="reveal">البتراء<span class="latin">ALPATRA HOTEL · DAMASCUS</span></h1>
+    </div>
+    <p class="hero-copy reveal" style="animation-delay:.1s">75 غرفة وجناحاً في شارع الاتحاد، على بُعد دقائق مشياً من محطة الحجاز وسوق الحميدية. <strong>احجز مباشرة مع الفندق</strong> وادفع عند وصولك.</p>
+    <div class="live-chips reveal" style="animation-delay:.2s" id="liveChips">
+      <span class="chip"><i class="dot"></i><span id="chipTonight">نتحقق من التوفر الآن…</span></span>
+      <span class="chip" id="chipFrom" hidden></span>
+      <span class="chip" id="chipBreakfast" hidden><svg width="15" height="15"><use href="#i-sun"/></svg> الإفطار الشامي مشمول</span>
+    </div>
+    <form class="search reveal" style="animation-delay:.3s" id="searchForm" autocomplete="off">
+      <button type="button" class="field date-field" id="dateBtn" aria-haspopup="dialog">
+        <span class="lbl">الوصول — المغادرة</span>
+        <span class="val" id="dateVal">اختر تواريخ إقامتك</span>
+      </button>
+      <div class="field">
+        <label for="adults">البالغون</label>
+        <select id="adults"><option>1</option><option selected>2</option><option>3</option></select>
+      </div>
+      <div class="field">
+        <label for="children">الأطفال</label>
+        <select id="children"><option selected>0</option><option>1</option><option>2</option></select>
+      </div>
+      <button class="btn btn-ultra" type="submit">اعرض الغرف المتاحة</button>
+      <div class="picker" id="picker" role="dialog" aria-label="اختر التواريخ" hidden></div>
+    </form>
+  </div>
+</section>
+<div class="ablaq"></div>
+
+<div class="wrap">
+  <div class="promise">
+    <div><svg><use href="#i-shield"/></svg><p><b>أفضل سعر عند الحجز المباشر</b><span>بلا عمولات مواقع الحجز</span></p></div>
+    <div><svg><use href="#i-cash"/></svg><p><b>الدفع عند الوصول</b><span>نقداً أو بالبطاقة في الاستقبال</span></p></div>
+    <div><svg><use href="#i-cal"/></svg><p><b id="promiseCancel">إلغاء مجاني</b><span>من صفحة «حجزي» برقم الحجز</span></p></div>
+    <div><svg><use href="#i-wa"/></svg><p><b>تأكيد سريع</b><span>يصل حجزك إلى الاستقبال فوراً</span></p></div>
+  </div>
+</div>
+
+<section class="sec" id="rooms">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">الغرف والأجنحة</div>
+        <h2 id="roomsTitle">اختر غرفتك</h2>
+      </div>
+      <div class="filters" id="typeFilters" role="group" aria-label="تصفية حسب السعة"></div>
+    </div>
+    <div class="stay-summary" id="staySummary" hidden></div>
+    <div class="rooms" id="roomsGrid">
+      <div class="room"><div class="gal skeleton"></div><div class="room-body"><div class="skeleton" style="height:22px;width:60%;border-radius:8px"></div><div class="skeleton" style="height:14px;width:80%;border-radius:8px"></div></div></div>
+      <div class="room"><div class="gal skeleton"></div><div class="room-body"><div class="skeleton" style="height:22px;width:60%;border-radius:8px"></div><div class="skeleton" style="height:14px;width:80%;border-radius:8px"></div></div></div>
+      <div class="room"><div class="gal skeleton"></div><div class="room-body"><div class="skeleton" style="height:22px;width:60%;border-radius:8px"></div><div class="skeleton" style="height:14px;width:80%;border-radius:8px"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec avail star-bg" id="availability">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow" style="color:var(--brass-2)">التوفر والأسعار</div>
+        <h2>كل ليلة وسعرها أمامك</h2>
+      </div>
+      <p>تقويم مباشر من نظام الفندق. اختر نوع الغرفة لترى سعر كل ليلة وعدد الغرف المتبقية، ثم اضغط على يوم الوصول ويوم المغادرة.</p>
+    </div>
+    <div class="avail-panel">
+      <div class="avail-top">
+        <div class="filters" id="calTypes" role="group" aria-label="نوع الغرفة"></div>
+        <span class="num" style="font-size:13px;color:var(--muted)" id="calNote"></span>
+      </div>
+      <div id="inlineCal"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="restaurant">
+  <div class="wrap resto">
+    <div class="resto-media">
+      <video autoplay muted loop playsinline preload="none" poster="media/breakfast-1.webp" aria-label="مائدة الإفطار في مطعم البتراء"><source src="media/breakfast.mp4" type="video/mp4"></video>
+      <img src="media/food-mezze.webp" alt="مازة شامية" loading="lazy">
+      <img src="media/food-grill.webp" alt="أطباق مشاوي" loading="lazy">
+    </div>
+    <div>
+      <div class="eyebrow">فندق ومطعم</div>
+      <h2 style="font-size:clamp(30px,4.4vw,52px);margin-top:10px">مائدة شامية تحت السقف نفسه</h2>
+      <p style="color:var(--muted);margin-top:14px;max-width:480px">المطعم جزء من اسم البتراء منذ البداية. ابدأ يومك بإفطار شامي، وعد في المساء إلى مازة ومشاوي بعد جولة في أسواق دمشق القديمة.</p>
+      <ul>
+        <li><svg><use href="#i-sun"/></svg><div><b>إفطار شامي</b><span id="bfLine">فول، حمّص، لبنة وزيتون، بيض، خبز طازج، شاي وقهوة.</span></div></li>
+        <li><svg><use href="#i-coffee"/></svg><div><b>مازة ومشاوي</b><span>أطباق باردة وساخنة ومشاوي مشكّلة، للنزلاء ولضيوف دمشق.</span></div></li>
+        <li><svg><use href="#i-bed"/></svg><div><b>خدمة الغرف</b><span>اطلب من الاستقبال، وتُضاف الفاتورة إلى حساب غرفتك.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec city star-bg" id="damascus">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow" style="color:var(--brass-2)">دمشق من حولك</div>
+        <h2>أقدم مدينة مأهولة، على بُعد خطوات</h2>
+      </div>
+      <p>البحصة في وسط دمشق، بين المرجة ومحطة الحجاز. من باب الفندق تصل إلى المدينة القديمة مشياً.</p>
+    </div>
+    <div class="mosaic">
+      <figure class="tile t-big" style="margin:0"><img src="media/dam-umayyad.webp" alt="صحن الجامع الأموي" loading="lazy"><figcaption><b>الجامع الأموي</b><span>قلب دمشق القديمة</span><div class="walk"><svg width="14" height="14"><use href="#i-walk"/></svg> نحو 25 دقيقة مشياً</div></figcaption></figure>
+      <figure class="tile" style="margin:0"><img src="media/dam-souq.webp" alt="سوق الحميدية" loading="lazy"><figcaption><b>سوق الحميدية</b><div class="walk"><svg width="14" height="14"><use href="#i-walk"/></svg> نحو 15 دقيقة</div></figcaption></figure>
+      <figure class="tile" style="margin:0"><img src="media/dam-spices.webp" alt="سوق البزورية" loading="lazy"><figcaption><b>البزورية</b><span>سوق البهارات والحلويات</span></figcaption></figure>
+      <figure class="tile t-wide" style="margin:0"><img src="media/dam-night.webp" alt="دمشق ليلاً من قاسيون" loading="lazy"><figcaption><b>دمشق ليلاً من قاسيون</b><span>أجمل إطلالة على المدينة</span></figcaption></figure>
+      <figure class="tile t-wide" style="margin:0"><img src="media/dam-house.webp" alt="بيت دمشقي قديم" loading="lazy"><figcaption><b>البيوت الدمشقية</b><span>حارات القيمرية وباب توما</span></figcaption></figure>
+      <figure class="tile t-wide" style="margin:0"><img src="media/dam-minaret.webp" alt="مئذنة في الجامع الأموي" loading="lazy"><figcaption><b>مآذن الأموي</b><span>ثلاث مآذن من عصور مختلفة</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+<div class="ablaq"></div>
+
+<section class="sec" id="manage">
+  <div class="wrap manage">
+    <div>
+      <div class="eyebrow">حجزي</div>
+      <h2 style="font-size:clamp(30px,4.4vw,52px);margin-top:10px">تابع حجزك أو ألغِه</h2>
+      <p style="color:var(--muted);margin-top:14px;max-width:440px">أدخل رقم الحجز الذي وصلك (يبدأ بـ AP) ورقم الهاتف الذي استخدمته. ستعرف إن كان الاستقبال قد أكّد الحجز ورقم غرفتك عند التخصيص.</p>
+      <form class="form-card" id="lookupForm" style="margin-top:24px">
+        <div class="row2">
+          <div class="inp"><label for="lkCode">رقم الحجز</label><input id="lkCode" required placeholder="AP-XXXXX" dir="ltr" autocapitalize="characters" style="text-align:right"></div>
+          <div class="inp"><label for="lkPhone">رقم الهاتف</label><input id="lkPhone" required inputmode="tel" dir="ltr" placeholder="09xx xxx xxx" style="text-align:right"></div>
+        </div>
+        <p class="err" id="lkErr" hidden></p>
+        <button class="btn btn-ultra" type="submit">اعرض الحجز</button>
+      </form>
+    </div>
+    <div id="lookupResult">
+      <div class="ticket" style="opacity:.9">
+        <div class="ticket-top">
+          <img src="media/lobby-desk.webp" alt="">
+          <div><div style="font-size:13px;opacity:.7">رقم الحجز</div><div class="ticket-code">AP-·····</div></div>
+        </div>
+        <div class="ticket-cut"></div>
+        <div class="ticket-body">
+          <div><span>الوصول</span><b>—</b></div><div><span>المغادرة</span><b>—</b></div><div><span>الحالة</span><b>—</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="ablaq thin"></div>
+  <div class="wrap foot-grid">
+    <div>
+      <a class="brand" href="#"><svg><use href="#logo"/></svg><span><b>البتراء</b><small>ALPATRA HOTEL &amp; REST.</small></span></a>
+      <p style="margin-top:16px;max-width:360px" id="footAddr">دمشق - سورية، البحصة - شارع الاتحاد</p>
+      <a class="btn btn-ghost" style="margin-top:18px;color:#fff" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Alpatra+Hotel+Bahsa+Damascus"><svg width="18" height="18"><use href="#i-pin"/></svg> افتح الموقع على الخريطة</a>
+    </div>
+    <div>
+      <h4>الهاتف</h4>
+      <div id="footPhones" style="display:grid;gap:4px"></div>
+      <h4 style="margin-top:18px">فاكس</h4>
+      <span class="ltr" id="footFax"></span>
+    </div>
+    <div>
+      <h4>راسلنا</h4>
+      <div style="display:grid;gap:6px">
+        <span class="ltr" id="footEmail"></span>
+        <span class="ltr" id="footWeb"></span>
+        <span id="footWa"></span>
+      </div>
+      <h4 style="margin-top:18px">الدخول والمغادرة</h4>
+      <span id="footTimes"></span>
+    </div>
+  </div>
+  <div class="wrap credit">
+    <span>© <span class="num" id="yr"></span> فندق ومطعم البتراء — دمشق</span>
+    <span>تصميم وتطوير <a href="https://instagram.com/soluneragency" target="_blank" rel="noopener">Solunera — Kamel Nassif</a> · <a href="admin.html">دخول الموظفين</a></span>
+  </div>
+</footer>
+
+<!-- room details modal -->
+<div class="scrim" id="scrim"></div>
+<div class="modal" id="roomModal" role="dialog" aria-modal="true" aria-labelledby="rmTitle"></div>
+
+<!-- booking sheet -->
+<aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet-head"><b id="sheetTitle">إتمام الحجز</b><button class="x" id="sheetClose" aria-label="إغلاق"><svg width="18" height="18"><use href="#i-x"/></svg></button></div>
+  <div class="sheet-body" id="sheetBody"></div>
+  <div class="sheet-foot" id="sheetFoot"></div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="engine.js"></script>
+<script src="api.js"></script>
+<script>
+(function(){
+'use strict';
+var API = window.AlpatraAPI, U = AlpatraEngine.util;
+var $ = function(s, r){ return (r||document).querySelector(s); };
+var $$ = function(s, r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+var S = { info:null, checkIn:null, checkOut:null, adults:2, children:0, avail:null, capFilter:'all', calType:'', cal:{}, mode:'server' };
+var AMEN = { wifi:'إنترنت لاسلكي', ac:'تكييف وتدفئة', tv:'تلفاز بقنوات فضائية', safe:'خزنة رقمية', minibar:'ميني بار', bathtub:'حوض استحمام', shower:'دوش', desk:'مكتب عمل', sofa:'ركن جلوس', coffee:'ركن قهوة', view:'إطلالة على المدينة' };
+var MONTHS = ['كانون الثاني','شباط','آذار','نيسان','أيار','حزيران','تموز','آب','أيلول','تشرين الأول','تشرين الثاني','كانون الأول'];
+var DOWS = ['أحد','إثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'];
+
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function money(n){ return '$' + (Math.round(n*100)/100).toLocaleString('en-US'); }
+function syp(n){ var r = S.info && S.info.settings.sypRate; return r > 0 ? '≈ ' + Math.round(n*r).toLocaleString('en-US') + ' ل.س' : ''; }
+function dLong(s){ var d = new Date(U.parseD(s)); return DOWS[d.getUTCDay()] + ' ' + d.getUTCDate() + ' ' + MONTHS[d.getUTCMonth()]; }
+function dShort(s){ var d = new Date(U.parseD(s)); return d.getUTCDate() + ' ' + MONTHS[d.getUTCMonth()]; }
+function nightsWord(n){ return n===1?'ليلة واحدة':n===2?'ليلتان':(n<=10? n+' ليالٍ' : n+' ليلة'); }
+function today(){ return U.todayStr(Date.now()); }
+function toast(msg){ var t=$('#toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(t._t); t._t=setTimeout(function(){t.classList.remove('on');},3200); }
+function icon(id, s){ return '<svg width="'+(s||18)+'" height="'+(s||18)+'"><use href="#i-'+id+'"/></svg>'; }
+function typeById(id){ return S.info.roomTypes.filter(function(t){return t.id===id;})[0]; }
+
+/* ---------- header ---------- */
+var top = $('#top');
+function onScroll(){ top.classList.toggle('solid', window.scrollY > 40); }
+window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+$('#menuBtn').addEventListener('click', function(){ var n=$('#nav'); n.classList.toggle('open'); this.setAttribute('aria-expanded', n.classList.contains('open')); });
+$$('#nav a').forEach(function(a){ a.addEventListener('click', function(){ $('#nav').classList.remove('open'); }); });
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---------- date picker (shared) ---------- */
+function Picker(host, opts){
+  this.host = host; this.opts = opts; this.base = today().slice(0,7) + '-01'; this.months = opts.months || 2;
+  this.sel = { a: S.checkIn, b: S.checkOut };
+  var self = this;
+  host.addEventListener('click', function(e){
+    e.stopPropagation();
+    var nav = e.target.closest('[data-nav]'); if (nav){ self.shift(+nav.dataset.nav); return; }
+    var day = e.target.closest('.day'); if (!day || day.disabled) return;
+    self.pick(day.dataset.d);
+  });
+  host.addEventListener('mouseover', function(e){ var day=e.target.closest('.day'); if(day && self.sel.a && !self.sel.b){ self.hover = day.dataset.d; self.paintRange(); } });
+}
+Picker.prototype.shift = function(n){
+  var d = new Date(U.parseD(this.base)); d.setUTCMonth(d.getUTCMonth()+n);
+  var nb = d.toISOString().slice(0,10); if (nb < today().slice(0,7)+'-01') return; this.base = nb; this.render();
+};
+Picker.prototype.pick = function(d){
+  var s = this.sel;
+  if (!s.a || s.b || d <= s.a){ s.a = d; s.b = null; }
+  else { if (U.nightsBetween(s.a, d) > (S.info ? S.info.settings.maxNights : 30)) { toast('أقصى مدة للحجز عبر الموقع ' + S.info.settings.maxNights + ' ليلة'); return; } s.b = d; }
+  this.hover = null; this.render();
+  if (s.a && s.b && this.opts.onRange) this.opts.onRange(s.a, s.b);
+};
+Picker.prototype.paintRange = function(){
+  var s = this.sel, end = s.b || this.hover;
+  $$('.day', this.host).forEach(function(el){
+    var d = el.dataset.d;
+    el.classList.toggle('start', d === s.a);
+    el.classList.toggle('end', !!s.b && d === s.b);
+    el.classList.toggle('in-range', !!(s.a && end && d > s.a && d < end));
+  });
+};
+Picker.prototype.render = function(){
+  var self=this, t=today(), html='<div class="cal-wrap">';
+  var typeId = this.opts.typeId ? this.opts.typeId() : '';
+  var cal = S.cal[typeId] || {};
+  for (var m=0; m<this.months; m++){
+    var first = new Date(U.parseD(this.base)); first.setUTCMonth(first.getUTCMonth()+m);
+    var y=first.getUTCFullYear(), mo=first.getUTCMonth(), startDow = first.getUTCDay(), dim = new Date(Date.UTC(y,mo+1,0)).getUTCDate();
+    html += '<div class="cal-month"><div class="cal-head">' + (m===0? '<button type="button" class="cal-nav" data-nav="-1" aria-label="الشهر السابق">'+icon('chev',16)+'</button>' : '<span></span>') +
+      '<b>' + MONTHS[mo] + ' <span class="num">' + y + '</span></b>' +
+      (m===this.months-1? '<button type="button" class="cal-nav" data-nav="1" aria-label="الشهر التالي" style="transform:scaleX(-1)">'+icon('chev',16)+'</button>' : '<span></span>') + '</div><div class="cal-grid">';
+    DOWS.forEach(function(d){ html += '<div class="cal-dow">'+d.slice(0,3)+'</div>'; });
+    for (var i=0;i<startDow;i++) html += '<span></span>';
+    for (var dd=1; dd<=dim; dd++){
+      var ds = y + '-' + ('0'+(mo+1)).slice(-2) + '-' + ('0'+dd).slice(-2), c = cal[ds];
+      var past = ds < t, cls = 'day', p = '';
+      if (c){ if (c.available<=0){ cls+=' full'; p='ممتلئ'; } else { p = '$'+Math.round(c.price); if (c.available<=3 && typeId) cls+=' low'; if (self.minP && c.price<=self.minP) cls+=' cheap'; } }
+      if (ds===t) cls+=' today';
+      var dis = past || (c && c.available<=0 && !(self.sel.a && !self.sel.b && ds>self.sel.a));
+      html += '<button type="button" class="'+cls+'" data-d="'+ds+'"'+(dis?' disabled':'')+' aria-label="'+dLong(ds)+(p?' '+p:'')+'"><span class="d num">'+dd+'</span><span class="p">'+(past?'':p)+'</span></button>';
+    }
+    html += '</div></div>';
+  }
+  html += '</div><div class="cal-foot"><div class="legend"><span><i style="background:var(--ok)"></i>أقل سعر</span><span><i style="background:var(--warn)"></i>آخر الغرف</span><span><i style="background:var(--bad)"></i>ممتلئ</span></div>' +
+    '<span>' + (this.sel.a && this.sel.b ? '<b>'+dShort(this.sel.a)+' ← '+dShort(this.sel.b)+'</b> · '+nightsWord(U.nightsBetween(this.sel.a,this.sel.b)) : this.sel.a ? 'اختر يوم المغادرة' : 'اختر يوم الوصول') + '</span>' +
+    (this.opts.footBtn ? this.opts.footBtn(this.sel) : '') + '</div>';
+  this.host.innerHTML = html; this.paintRange();
+};
+function loadCalendar(typeId){
+  var key = typeId || '';
+  if (S.cal[key]) return Promise.resolve(S.cal[key]);
+  return API.get('/api/public/calendar?days=120' + (typeId ? '&typeId=' + typeId : '')).then(function(rows){
+    var map = {}; rows.forEach(function(r){ map[r.date] = r; }); S.cal[key] = map; return map;
+  });
+}
+
+/* hero picker */
+var heroPicker = new Picker($('#picker'), {
+  onRange: function(a,b){ setDates(a,b); setTimeout(function(){ closePicker(); }, 250); }
+});
+function openPicker(){ var p=$('#picker'); p.hidden=false; heroPicker.sel={a:S.checkIn,b:S.checkOut}; heroPicker.render(); loadCalendar('').then(function(){ computeMin(heroPicker, ''); heroPicker.render(); }); }
+function closePicker(){ $('#picker').hidden = true; }
+function computeMin(p, key){ var vals = Object.keys(S.cal[key]||{}).map(function(k){return S.cal[key][k];}).filter(function(c){return c.available>0 && c.price!=null;}).map(function(c){return c.price;}); p.minP = vals.length && Math.min.apply(null, vals) < Math.max.apply(null, vals) ? Math.min.apply(null, vals) : null; }
+$('#dateBtn').addEventListener('click', function(e){ e.stopPropagation(); $('#picker').hidden ? openPicker() : closePicker(); });
+document.addEventListener('click', function(e){ if (!$('#picker').hidden && !e.target.closest('#picker') && !e.target.closest('#dateBtn')) closePicker(); });
+document.addEventListener('keydown', function(e){ if (e.key==='Escape'){ closePicker(); closeSheet(); closeModal(); } });
+
+function setDates(a,b){
+  S.checkIn=a; S.checkOut=b;
+  $('#dateVal').textContent = dShort(a) + ' ← ' + dShort(b) + ' · ' + nightsWord(U.nightsBetween(a,b));
+  inlinePicker.sel = {a:a,b:b}; inlinePicker.render();
+  fetchAvailability();
+}
+$('#adults').addEventListener('change', function(){ S.adults=+this.value; if (S.checkIn) fetchAvailability(); else renderRooms(); });
+$('#children').addEventListener('change', function(){ S.children=+this.value; if (S.checkIn) fetchAvailability(); else renderRooms(); });
+$('#searchForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  if (!S.checkIn || !S.checkOut){ openPicker(); toast('اختر تاريخ الوصول والمغادرة أولاً'); return; }
+  fetchAvailability(true);
+});
+$$('[data-scroll-search]').forEach(function(a){ a.addEventListener('click', function(e){ if (!S.checkIn){ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); setTimeout(openPicker, 400); } }); });
+
+/* ---------- availability ---------- */
+function fetchAvailability(scroll){
+  var q = '/api/public/availability?checkIn='+S.checkIn+'&checkOut='+S.checkOut+'&adults='+S.adults+'&children='+S.children;
+  $('#roomsGrid').style.opacity = .5;
+  return API.get(q).then(function(rows){
+    S.avail = {}; rows.forEach(function(r){ S.avail[r.typeId]=r; });
+    renderRooms();
+    if (scroll) document.getElementById('rooms').scrollIntoView({behavior:'smooth'});
+  }).catch(function(e){ toast(e.message); }).then(function(){ $('#roomsGrid').style.opacity = 1; });
+}
+
+/* ---------- rooms ---------- */
+function renderFilters(){
+  var caps = [['all','الكل'],['1','لشخص'],['2','لشخصين'],['3','للعائلات']];
+  $('#typeFilters').innerHTML = caps.map(function(c){ return '<button class="pill" type="button" data-cap="'+c[0]+'" aria-pressed="'+(S.capFilter===c[0])+'">'+c[1]+'</button>'; }).join('');
+}
+$('#typeFilters').addEventListener('click', function(e){ var b=e.target.closest('[data-cap]'); if(!b) return; S.capFilter=b.dataset.cap; renderFilters(); renderRooms(); });
+
+function galleryHTML(imgs, name){
+  return '<div class="gal" data-i="0"><div class="gal-track">' + imgs.map(function(src,i){ return '<img src="'+esc(src)+'" alt="'+esc(name)+' — صورة '+(i+1)+'" loading="lazy">'; }).join('') + '</div>' +
+    (imgs.length>1 ? '<button type="button" class="gal-btn prev" data-g="-1" aria-label="الصورة السابقة">'+icon('chev',16)+'</button><button type="button" class="gal-btn next" data-g="1" aria-label="الصورة التالية" style="transform:translateY(-50%) scaleX(-1)">'+icon('chev',16)+'</button><div class="gal-dots">'+imgs.map(function(_,i){return '<i class="'+(i===0?'on':'')+'"></i>';}).join('')+'</div>' : '') + '</div>';
+}
+document.addEventListener('click', function(e){
+  var b = e.target.closest('[data-g]'); if(!b) return; e.stopPropagation();
+  var g = b.closest('.gal'), n = $$('img', g).length, i = (+g.dataset.i + +b.dataset.g + n) % n;
+  g.dataset.i = i; $('.gal-track', g).style.transform = 'translateX(' + (i*100) + '%)';
+  $$('.gal-dots i', g).forEach(function(d,k){ d.classList.toggle('on', k===i); });
+});
+
+function renderRooms(){
+  var types = S.info.roomTypes.slice();
+  if (S.capFilter !== 'all') types = types.filter(function(t){ return S.capFilter==='3' ? t.capacity>=3 : t.capacity===+S.capFilter; });
+  var st = S.info.settings, has = !!(S.avail && S.checkIn);
+  if (has){
+    var n = U.nightsBetween(S.checkIn, S.checkOut), cnt = types.filter(function(t){ var a=S.avail[t.id]; return a && a.available>0 && a.fits; }).length;
+    $('#staySummary').hidden = false;
+    $('#staySummary').innerHTML = icon('cal',22) + '<div><b>' + dShort(S.checkIn) + ' ← ' + dShort(S.checkOut) + '</b><div style="font-size:13.5px;opacity:.75">' + nightsWord(n) + ' · ' + S.adults + ' بالغ' + (S.children? ' و'+S.children+' طفل':'') + '</div></div>' +
+      '<span class="chip">' + (cnt ? cnt + ' أنواع متاحة لتواريخك' : 'لا يوجد توفر مطابق، جرّب تواريخ أخرى') + '</span><button class="btn btn-ghost" type="button" id="changeDates" style="color:#fff">تغيير التواريخ</button>';
+    $('#changeDates').onclick = function(){ window.scrollTo({top:0,behavior:'smooth'}); setTimeout(openPicker,400); };
+    $('#roomsTitle').textContent = 'الغرف المتاحة لإقامتك';
+  }
+  // sort: available+fits first when searching
+  if (has) types.sort(function(a,b){ var A=S.avail[a.id],B=S.avail[b.id]; return ((B&&B.available>0&&B.fits)?1:0) - ((A&&A.available>0&&A.fits)?1:0) || a.order-b.order; });
+  $('#roomsGrid').innerHTML = types.map(function(t){
+    var a = has ? S.avail[t.id] : null, ok = !has || (a && a.available>0 && a.fits);
+    var badge = '';
+    if (has && a){
+      if (a.available<=0) badge = '<span class="badge none">محجوزة بالكامل لتواريخك</span>';
+      else if (!a.fits) badge = '<span class="badge none">تتسع لـ '+t.capacity+' بالغ'+(t.maxChildren? ' و'+t.maxChildren+' طفل':'')+'</span>';
+      else if (a.available<=3) badge = '<span class="badge hot">'+(a.available===1?'بقيت غرفة واحدة':'بقي '+a.available+' غرف فقط')+'</span>';
+      else badge = '<span class="badge">'+icon('check',14)+' متاحة</span>';
+    } else badge = '<span class="badge"><span class="num">'+t.size+'</span> م²</span>';
+    var priceHTML = has && a
+      ? '<div class="price"><small>المجموع لـ '+nightsWord(a.nightly.length)+'</small><b class="num">'+money(a.total)+'</b><div class="syp">'+syp(a.total)+'</div></div>'
+      : '<div class="price"><small>ابتداءً من / لليلة</small><b class="num">'+money(t.price)+'</b><div class="syp">'+syp(t.price)+'</div></div>';
+    return '<article class="room reveal'+(ok?'':' unavailable')+'" data-type="'+t.id+'">' + '<div style="position:relative">' + galleryHTML(t.images, t.name) + badge + '</div>' +
+      '<div class="room-body"><div class="room-title"><div><h3>'+esc(t.name)+'</h3><div class="tag">'+esc(t.tagline||'')+'</div></div></div>' +
+      '<div class="specs"><span>'+icon('size',16)+'<span class="num">'+t.size+'</span> م²</span><span>'+icon('bed',16)+esc(t.beds)+'</span><span>'+icon('user',16)+'حتى '+t.capacity+' بالغ'+(t.maxChildren?' + '+t.maxChildren+' طفل':'')+'</span></div>' +
+      '<div class="amen">'+(t.amenities||[]).slice(0,7).map(function(k){ return AMEN[k]? '<span title="'+AMEN[k]+'">'+icon(k,17)+'<i class="sr">'+AMEN[k]+'</i></span>' : ''; }).join('')+'</div>' +
+      '<div class="room-foot">'+priceHTML+'<div style="display:grid;gap:8px;justify-items:end"><button class="btn '+(ok?'btn-ultra':'btn-ghost')+'" type="button" data-book="'+t.id+'"'+(has&&!ok?' disabled':'')+'>'+(has?'احجز هذه الغرفة':'اختر التواريخ')+'</button><button class="link" type="button" data-details="'+t.id+'">التفاصيل والصور</button></div></div></div></article>';
+  }).join('') || '<p>لا توجد غرف بهذه السعة.</p>';
+}
+$('#roomsGrid').addEventListener('click', function(e){
+  var b = e.target.closest('[data-book]'), d = e.target.closest('[data-details]');
+  if (b) startBooking(b.dataset.book);
+  if (d) openModal(d.dataset.details);
+});
+function startBooking(typeId){
+  if (!S.checkIn || !S.avail){
+    S.pendingType = typeId; window.scrollTo({top:0,behavior:'smooth'}); setTimeout(openPicker, 450); toast('اختر تواريخ إقامتك لنعرض السعر والتوفر'); return;
+  }
+  var a = S.avail[typeId];
+  if (!a || a.available<=0){ toast('هذه الغرفة غير متاحة لتواريخك'); return; }
+  if (!a.fits){ toast('عدد الأشخاص أكبر من سعة هذه الغرفة'); return; }
+  openSheet(typeId);
+}
+
+/* ---------- modal ---------- */
+function openModal(typeId){
+  var t = typeById(typeId), m = $('#roomModal');
+  m.innerHTML = '<div class="modal-card">' + galleryHTML(t.images, t.name) + '<div class="modal-info"><button class="x" type="button" data-close aria-label="إغلاق">'+icon('x',18)+'</button>' +
+    '<div class="eyebrow">'+esc(t.tagline||'')+'</div><h3 id="rmTitle" style="font-size:30px">'+esc(t.name)+'</h3><p style="color:var(--muted)">'+esc(t.desc)+'</p>' +
+    '<div class="specs"><span>'+icon('size',16)+'<span class="num">'+t.size+'</span> م²</span><span>'+icon('bed',16)+esc(t.beds)+'</span><span>'+icon('user',16)+'حتى '+t.capacity+' بالغ</span></div>' +
+    '<div class="am-list">'+(t.amenities||[]).map(function(k){ return AMEN[k]? '<span>'+icon(k)+AMEN[k]+'</span>':''; }).join('')+(S.info.settings.breakfastIncluded?'<span>'+icon('sun')+'الإفطار مشمول</span>':'')+'</div>' +
+    '<div class="room-foot"><div class="price"><small>ابتداءً من / لليلة</small><b class="num">'+money(t.price)+'</b></div><button class="btn btn-ultra" type="button" data-mbook="'+t.id+'">احجز الآن</button></div></div></div>';
+  m.classList.add('on'); $('#scrim').classList.add('on'); document.body.style.overflow='hidden';
+  $('[data-close]', m).focus();
+}
+function closeModal(){ var m=$('#roomModal'); if(!m.classList.contains('on')) return; m.classList.remove('on'); if(!$('#sheet').classList.contains('on')) { $('#scrim').classList.remove('on'); document.body.style.overflow=''; } }
+$('#roomModal').addEventListener('click', function(e){
+  if (e.target === this || e.target.closest('[data-close]')) closeModal();
+  var b = e.target.closest('[data-mbook]'); if (b){ closeModal(); startBooking(b.dataset.mbook); }
+});
+$('#scrim').addEventListener('click', function(){ closeModal(); closeSheet(); });
+
+/* ---------- booking sheet ---------- */
+var COUNTRIES = [['963','🇸🇾 +963'],['961','🇱🇧 +961'],['962','🇯🇴 +962'],['964','🇮🇶 +964'],['966','🇸🇦 +966'],['971','🇦🇪 +971'],['974','🇶🇦 +974'],['965','🇰🇼 +965'],['20','🇪🇬 +20'],['90','🇹🇷 +90'],['49','🇩🇪 +49'],['33','🇫🇷 +33'],['44','🇬🇧 +44'],['1','🇺🇸 +1']];
+function openSheet(typeId){
+  var t = typeById(typeId), a = S.avail[typeId], n = a.nightly.length, st = S.info.settings;
+  S.bookingType = typeId;
+  $('#sheetTitle').textContent = 'إتمام الحجز';
+  $('#sheetBody').innerHTML =
+    '<div class="sum-card"><img src="'+esc(t.images[0])+'" alt=""><div><b>'+esc(t.name)+'</b><div style="color:var(--muted);font-size:13.5px">'+S.adults+' بالغ'+(S.children?' و'+S.children+' طفل':'')+' · '+esc(t.beds)+'</div>'+(a.available<=3?'<div style="color:var(--bad);font-size:13px;font-weight:600">'+(a.available===1?'آخر غرفة متاحة':'بقي '+a.available+' غرف')+'</div>':'')+'</div></div>' +
+    '<div class="dates-row"><div><span>الوصول · من '+esc(st.checkIn)+'</span><b>'+dLong(S.checkIn)+'</b></div><span class="n">'+nightsWord(n)+'</span><div style="text-align:left"><span>المغادرة · حتى '+esc(st.checkOut)+'</span><b>'+dLong(S.checkOut)+'</b></div></div>' +
+    '<details class="breakdown"><summary>تفصيل السعر</summary>' + a.nightly.map(function(x){ return '<div class="bd-line"><span>'+dLong(x.date)+'</span><span class="num">'+money(x.price)+'</span></div>'; }).join('') +
+      (a.tax? '<div class="bd-line"><span>ضريبة '+st.taxPercent+'%</span><span class="num">'+money(a.tax)+'</span></div>':'') + '</details>' +
+    '<form id="bookForm" class="form-card" novalidate>' +
+      '<div class="inp"><label for="bName">الاسم الكامل (كما في الهوية أو الجواز)</label><input id="bName" required autocomplete="name"></div>' +
+      '<div class="inp"><label for="bPhone">رقم الموبايل (واتساب)</label><div class="phone-in"><select id="bCc" aria-label="رمز الدولة">'+COUNTRIES.map(function(c){return '<option value="'+c[0]+'">'+c[1]+'</option>';}).join('')+'</select><input id="bPhone" required inputmode="tel" autocomplete="tel-national" placeholder="9xx xxx xxx"></div></div>' +
+      '<div class="row2"><div class="inp"><label for="bEmail">البريد الإلكتروني (اختياري)</label><input id="bEmail" type="email" dir="ltr" autocomplete="email"></div>' +
+      '<div class="inp"><label for="bNat">الجنسية</label><select id="bNat"><option>سوري</option><option>لبناني</option><option>أردني</option><option>عراقي</option><option>فلسطيني</option><option>سعودي</option><option>إماراتي</option><option>كويتي</option><option>مصري</option><option>تركي</option><option>أوروبي</option><option>أخرى</option></select></div></div>' +
+      '<div class="inp"><label for="bTime">وقت الوصول المتوقع</label><select id="bTime"><option value="">لا أعرف بعد</option><option>قبل الظهر</option><option>12:00 - 15:00</option><option>15:00 - 18:00</option><option>18:00 - 21:00</option><option>بعد 21:00</option></select></div>' +
+      '<div class="inp"><label for="bReq">طلبات خاصة (اختياري)</label><textarea id="bReq" placeholder="مثلاً: طابق مرتفع، سرير إضافي للطفل، وصول متأخر…"></textarea></div>' +
+      '<label class="check"><input type="checkbox" id="bAgree" required><span>'+esc(st.cancelPolicy)+'</span></label>' +
+      '<p class="err" id="bErr" hidden></p>' +
+    '</form>';
+  $('#sheetFoot').innerHTML = '<div class="tot"><span>المجموع · يُدفع في الفندق</span><b class="num">'+money(a.total)+'</b><span>'+syp(a.total)+'</span></div><button class="btn btn-ultra" type="button" id="bSubmit" style="padding-inline:28px">تأكيد الحجز</button>';
+  $('#bSubmit').onclick = submitBooking;
+  $('#bookForm').onsubmit = function(e){ e.preventDefault(); submitBooking(); };
+  $('#sheet').classList.add('on'); $('#scrim').classList.add('on'); document.body.style.overflow='hidden';
+  setTimeout(function(){ $('#bName').focus(); }, 400);
+}
+function closeSheet(){ $('#sheet').classList.remove('on'); if(!$('#roomModal').classList.contains('on')){ $('#scrim').classList.remove('on'); document.body.style.overflow=''; } }
+$('#sheetClose').onclick = closeSheet;
+
+function submitBooking(){
+  var err = $('#bErr'), name = $('#bName').value.trim(), local = $('#bPhone').value.replace(/[^\d]/g,''), cc = $('#bCc').value;
+  function fail(m, el){ err.textContent=m; err.hidden=false; if (el) el.focus(); }
+  if (name.split(/\s+/).length < 2) return fail('اكتب الاسم الكامل (الاسم والكنية)', $('#bName'));
+  if (local.length < 7) return fail('اكتب رقم موبايل صحيح', $('#bPhone'));
+  if (local[0]==='0') local = local.slice(1);
+  var email = $('#bEmail').value.trim();
+  if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return fail('البريد الإلكتروني غير صحيح', $('#bEmail'));
+  if (!$('#bAgree').checked) return fail('يرجى الموافقة على سياسة الحجز والإلغاء', $('#bAgree'));
+  err.hidden = true;
+  var btn = $('#bSubmit'); btn.disabled = true; btn.textContent = 'جارٍ الحجز…';
+  API.post('/api/public/book', { typeId:S.bookingType, checkIn:S.checkIn, checkOut:S.checkOut, adults:S.adults, children:S.children, name:name, phone:'+'+cc+local,
+    email:email, nationality:$('#bNat').value, arrivalTime:$('#bTime').value, requests:$('#bReq').value.trim() })
+  .then(function(b){ showDone(b); S.cal = {}; fetchAvailability(); refreshLive(); })
+  .catch(function(e){ fail(e.message); btn.disabled=false; btn.textContent='تأكيد الحجز'; });
+}
+function waLink(text){ var n = S.info.settings.whatsapp; return n ? 'https://wa.me/' + n + '?text=' + encodeURIComponent(text) : null; }
+function showDone(b){
+  $('#sheetTitle').textContent = 'تم استلام حجزك';
+  var wa = waLink(b.waText);
+  $('#sheetBody').innerHTML = '<div class="done-hero"><div class="stamp">'+icon('check',46)+'</div><h3 style="font-size:26px">شكراً '+esc(b.name.split(' ')[0])+'، حجزك وصل إلى الاستقبال</h3><p style="color:var(--muted);max-width:400px">احتفظ برقم الحجز. سيراجع موظف الاستقبال الحجز ويؤكده، ويمكنك متابعة حالته من صفحة «حجزي».</p></div>' +
+    ticketHTML(b) +
+    '<div class="copy-row"><button class="btn btn-ghost" type="button" id="copyCode">نسخ رقم الحجز</button>' + (wa ? '<a class="btn btn-wa" target="_blank" rel="noopener" href="'+wa+'">'+icon('wa',18)+' أرسل التفاصيل للاستقبال عبر واتساب</a>' : '') + '</div>' +
+    (S.mode==='preview' ? '<p style="font-size:13.5px;color:var(--muted);text-align:center">في هذه المعاينة يظهر الحجز فوراً في <a href="admin.html">لوحة الاستقبال</a> مع تنبيه صوتي. على النسخة المنشورة يصل أيضاً كرسالة واتساب إلى هاتف الاستقبال.</p>' : '');
+  $('#sheetFoot').innerHTML = '<button class="btn btn-ultra" type="button" style="flex:1" id="doneClose">تم</button>';
+  $('#doneClose').onclick = closeSheet;
+  $('#copyCode').onclick = function(){ copy(b.code); };
+  try { localStorage.setItem('alpatra_last_booking', JSON.stringify({code:b.code})); } catch(e){}
+}
+function copy(text){
+  var ok = function(){ toast('تم النسخ: ' + text); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, function(){ toast('رقم الحجز: ' + text); });
+  else toast('رقم الحجز: ' + text);
+}
+var STATUS = { pending:'بانتظار التأكيد', confirmed:'مؤكد', in_house:'مقيم حالياً', checked_out:'غادر', cancelled:'ملغى', no_show:'لم يحضر' };
+function ticketHTML(b){
+  return '<div class="ticket"><div class="ticket-top"><img src="'+esc(b.image||'media/lobby-desk.webp')+'" alt=""><div style="min-width:0"><div style="font-size:13px;opacity:.7">رقم الحجز</div><div class="ticket-code">'+esc(b.code)+'</div><span class="status st-'+b.status+'">'+STATUS[b.status]+'</span></div></div><div class="ticket-cut"></div>' +
+    '<div class="ticket-body"><div><span>الاسم</span><b>'+esc(b.name||'')+'</b></div><div><span>الغرفة</span><b>'+esc(b.typeName)+(b.room?' · <span class="num">'+esc(b.room)+'</span>':'')+'</b></div><div><span>المجموع</span><b class="num">'+money(b.total)+'</b></div>' +
+    '<div><span>الوصول</span><b>'+dShort(b.checkIn)+'</b></div><div><span>المغادرة</span><b>'+dShort(b.checkOut)+'</b></div><div><span>المدة</span><b>'+nightsWord(b.nights)+'</b></div></div></div>';
+}
+
+/* ---------- manage booking ---------- */
+$('#lookupForm').addEventListener('submit', function(e){
+  e.preventDefault(); var err = $('#lkErr'); err.hidden = true;
+  var code = $('#lkCode').value.trim().toUpperCase(), phone = $('#lkPhone').value.trim();
+  API.get('/api/public/booking?code='+encodeURIComponent(code)+'&phone='+encodeURIComponent(phone)).then(function(b){ renderLookup(b, phone); })
+  .catch(function(x){ err.textContent = x.message; err.hidden = false; });
+});
+function renderLookup(b, phone){
+  var canCancel = (b.status==='pending'||b.status==='confirmed') && b.checkIn > today();
+  $('#lookupResult').innerHTML = ticketHTML(b) + (canCancel ? '<div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center" id="cxRow"><button class="btn btn-ghost" type="button" id="cxBtn" style="color:var(--bad)">إلغاء الحجز</button></div>' : '');
+  if (canCancel) $('#cxBtn').onclick = function(){
+    $('#cxRow').innerHTML = '<span style="font-weight:600">هل تريد إلغاء الحجز فعلاً؟</span><button class="btn btn-ultra" type="button" id="cxYes" style="background:var(--bad)">نعم، ألغِ الحجز</button><button class="btn btn-ghost" type="button" id="cxNo">تراجع</button>';
+    $('#cxNo').onclick = function(){ renderLookup(b, phone); };
+    $('#cxYes').onclick = function(){ API.post('/api/public/cancel',{code:b.code, phone:phone}).then(function(nb){ toast('تم إلغاء الحجز'); renderLookup(nb, phone); S.cal={}; refreshLive(); }).catch(function(x){ toast(x.message); }); };
+  };
+}
+
+/* ---------- inline availability calendar ---------- */
+var inlinePicker = new Picker($('#inlineCal'), {
+  months: 2, typeId: function(){ return S.calType; },
+  footBtn: function(sel){ return sel.a && sel.b ? '<button class="btn btn-ultra" type="button" data-cal-go>اعرض الأسعار لهذه التواريخ</button>' : ''; },
+  onRange: function(a,b){ S.checkIn=a; S.checkOut=b; $('#dateVal').textContent = dShort(a) + ' ← ' + dShort(b) + ' · ' + nightsWord(U.nightsBetween(a,b)); }
+});
+$('#inlineCal').addEventListener('click', function(e){ if (e.target.closest('[data-cal-go]')) fetchAvailability(true); });
+function renderCalTypes(){
+  var opts = [['', 'كل الغرف']].concat(S.info.roomTypes.map(function(t){ return [t.id, t.name]; }));
+  $('#calTypes').innerHTML = opts.map(function(o){ return '<button class="pill" type="button" data-ct="'+o[0]+'" aria-pressed="'+(S.calType===o[0])+'">'+esc(o[1])+'</button>'; }).join('');
+}
+$('#calTypes').addEventListener('click', function(e){ var b=e.target.closest('[data-ct]'); if(!b) return; S.calType=b.dataset.ct; renderCalTypes(); loadCalendar(S.calType).then(function(){ computeMin(inlinePicker, S.calType); inlinePicker.render(); }); });
+
+/* ---------- live chips ---------- */
+function refreshLive(){
+  return loadCalendar('').then(function(map){
+    var c = map[today()];
+    if (c) $('#chipTonight').textContent = c.available > 0 ? c.available + ' غرفة متاحة الليلة' : 'الفندق ممتلئ الليلة، تحقق من الأيام التالية';
+  }).catch(function(){ $('#chipTonight').textContent = 'احجز مباشرة مع الفندق'; });
+}
+
+/* ---------- boot ---------- */
+API.mode().then(function(m){ S.mode = m; if (m==='preview') $('#previewBar').hidden = false; });
+API.get('/api/public/info').then(function(info){
+  S.info = info; var st = info.settings;
+  var min = Math.min.apply(null, info.roomTypes.map(function(t){ return t.price; }));
+  $('#chipFrom').hidden = false; $('#chipFrom').innerHTML = 'يبدأ من <b class="num">'+money(min)+'</b> لليلة';
+  $('#chipBreakfast').hidden = !st.breakfastIncluded;
+  if (!st.breakfastIncluded) $('#bfLine').textContent = 'فول، حمّص، لبنة وزيتون، بيض، خبز طازج، شاي وقهوة. يمكن إضافته إلى حجزك من الاستقبال.';
+  $('#footAddr').textContent = st.city + '، ' + st.address;
+  $('#footPhones').innerHTML = st.phones.map(function(p){ return '<a class="ltr" href="tel:'+p.replace(/\s/g,'')+'" style="text-decoration:none">'+esc(p)+'</a>'; }).join('');
+  $('#footFax').textContent = st.fax; $('#footEmail').textContent = st.email; $('#footWeb').textContent = st.website;
+  $('#footTimes').innerHTML = 'الدخول من <span class="num">'+esc(st.checkIn)+'</span> · المغادرة حتى <span class="num">'+esc(st.checkOut)+'</span>';
+  if (st.whatsapp) $('#footWa').innerHTML = '<a target="_blank" rel="noopener" href="https://wa.me/'+st.whatsapp+'">'+icon('wa',16)+' واتساب الاستقبال</a> <span class="ltr">+'+esc(st.whatsapp)+'</span>';
+  renderFilters(); renderRooms(); renderCalTypes();
+  loadCalendar('').then(function(){ computeMin(inlinePicker,''); inlinePicker.render(); });
+  refreshLive();
+  if (!st.onlineBooking){ $('#chipTonight').textContent = 'الحجز الإلكتروني متوقف مؤقتاً — اتصل بنا'; }
+}).catch(function(e){ toast('تعذّر تحميل بيانات الفندق: ' + e.message); });
+// pause hero video when not visible (battery)
+var hv = $('#heroVideo');
+if ('IntersectionObserver' in window && hv) new IntersectionObserver(function(en){ en.forEach(function(x){ if (x.isIntersecting) { var p = hv.play(); if (p && p.catch) p.catch(function(){}); } else hv.pause(); }); }).observe(hv);
+})();
+</script>
+</body>
+</html>
