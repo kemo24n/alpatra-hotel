@@ -107,6 +107,8 @@ button.field:hover,.field:focus-within{background:var(--stone)}
 .cal-head b{font-family:var(--f-display);font-size:17px}
 .cal-nav{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--paper);display:grid;place-items:center}
 .cal-nav:hover{background:var(--stone)}
+.cal-nav[disabled]{opacity:.3;cursor:default}
+.cal-nav.mob-only{display:none}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
 .cal-dow{font-size:11.5px;color:var(--muted);text-align:center;padding-bottom:4px}
 .day{height:54px;border:0;background:transparent;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15;padding:2px;position:relative;max-width:100%}
@@ -324,6 +326,7 @@ footer .ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
 @media (max-width:640px){
   .cal-wrap{grid-template-columns:1fr}
   .cal-wrap .cal-month:nth-child(2){display:none}
+  .cal-nav.mob-only{display:grid}
   .picker{position:fixed;top:auto;bottom:0;inset-inline:0;width:100%;border-radius:22px 22px 0 0;padding-bottom:calc(18px + env(safe-area-inset-bottom,0px))}
   .rooms{grid-template-columns:1fr}
   .hero{min-height:620px}
@@ -660,9 +663,11 @@ Picker.prototype.render = function(){
   for (var m=0; m<this.months; m++){
     var first = new Date(U.parseD(this.base)); first.setUTCMonth(first.getUTCMonth()+m);
     var y=first.getUTCFullYear(), mo=first.getUTCMonth(), startDow = first.getUTCDay(), dim = new Date(Date.UTC(y,mo+1,0)).getUTCDate();
-    html += '<div class="cal-month"><div class="cal-head">' + (m===0? '<button type="button" class="cal-nav" data-nav="-1" aria-label="الشهر السابق">'+icon('chev',16)+'</button>' : '<span></span>') +
+    var atStart = this.base <= t.slice(0,7)+'-01';
+    var nextBtn = function(cls){ return '<button type="button" class="cal-nav '+cls+'" data-nav="1" aria-label="الشهر التالي" style="transform:scaleX(-1)">'+icon('chev',16)+'</button>'; };
+    html += '<div class="cal-month"><div class="cal-head">' + (m===0? '<button type="button" class="cal-nav" data-nav="-1" aria-label="الشهر السابق"'+(atStart?' disabled':'')+'>'+icon('chev',16)+'</button>' : '<span></span>') +
       '<b>' + MONTHS[mo] + ' <span class="num">' + y + '</span></b>' +
-      (m===this.months-1? '<button type="button" class="cal-nav" data-nav="1" aria-label="الشهر التالي" style="transform:scaleX(-1)">'+icon('chev',16)+'</button>' : '<span></span>') + '</div><div class="cal-grid">';
+      (m===this.months-1? nextBtn('') : m===0 ? nextBtn('mob-only') : '<span></span>') + '</div><div class="cal-grid">';
     DOWS.forEach(function(d){ html += '<div class="cal-dow">'+d.slice(0,3)+'</div>'; });
     for (var i=0;i<startDow;i++) html += '<span></span>';
     for (var dd=1; dd<=dim; dd++){
@@ -810,7 +815,7 @@ $('#roomModal').addEventListener('click', function(e){
 $('#scrim').addEventListener('click', function(){ closeModal(); closeSheet(); });
 
 /* ---------- booking sheet ---------- */
-var COUNTRIES = [['963','🇸🇾 +963'],['961','🇱🇧 +961'],['962','🇯🇴 +962'],['964','🇮🇶 +964'],['966','🇸🇦 +966'],['971','🇦🇪 +971'],['974','🇶🇦 +974'],['965','🇰🇼 +965'],['20','🇪🇬 +20'],['90','🇹🇷 +90'],['49','🇩🇪 +49'],['33','🇫🇷 +33'],['44','🇬🇧 +44'],['1','🇺🇸 +1']];
+var COUNTRIES = [['963','سوريا +963'],['961','لبنان +961'],['962','الأردن +962'],['964','العراق +964'],['966','السعودية +966'],['971','الإمارات +971'],['974','قطر +974'],['965','الكويت +965'],['20','مصر +20'],['90','تركيا +90'],['49','ألمانيا +49'],['33','فرنسا +33'],['44','بريطانيا +44'],['1','أمريكا +1']];
 function openSheet(typeId){
   var t = typeById(typeId), a = S.avail[typeId], n = a.nightly.length, st = S.info.settings;
   S.bookingType = typeId;
